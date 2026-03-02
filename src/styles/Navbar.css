@@ -1,0 +1,384 @@
+.theme-toggle-btn {
+  background: none;
+  border: none;
+  color: var(--gray);
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  margin-right: 2px;
+}
+.theme-toggle-btn:hover {
+  background: var(--sage-light);
+  color: var(--sage-main);
+}
+html[data-theme='dark'], body[data-theme='dark'] {
+  /* palette sombre bleue marine */
+  --sage-main: #3b82f6;          /* accent bleu vif */
+  --sage-dark: #f8fafc;          /* texte principal en clair */
+  --sage-light: #1e293b;         /* fond secondaire (bleu-gris) */
+  --gray: #94a3b8;               /* texte secondaire */
+  --gray-light: #334155;         /* pour hover/contours*/
+  --white: #0f172a;              /* fond principal très sombre */
+  --border: #334155;             /* bordures discrètes */
+}
+/* src/styles/Navbar.css */
+:root {
+  --sage-main: #4f7c64;
+  --sage-dark: #1a2e25;
+  --sage-light: #e8f0ed;
+  --gray: #64748b;
+  --gray-light: #f1f5f9;
+  --white: #ffffff;
+  --border: #e2e8f0;
+}
+
+.top-navbar {
+  background: linear-gradient(135deg, var(--white) 0%, var(--sage-light) 100%);
+  box-shadow: 0 4px 20px rgba(79, 124, 100, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid var(--border);
+}
+
+.top-navbar {
+  padding: 0 20px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ==================== NAV LEFT ==================== */
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+}
+
+.hamburger-btn {
+  background: none;
+  border: none;
+  color: var(--sage-dark);
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.hamburger-btn:hover {
+  background: var(--gray-light);
+  color: var(--sage-main);
+}
+
+.nav-brand-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-sparkle {
+  color: var(--sage-main);
+}
+
+.nav-brand {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--sage-dark);
+  letter-spacing: -0.5px;
+}
+
+.nav-brand span {
+  color: var(--sage-main);
+}
+
+/* ==================== NAV RIGHT ==================== */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* ==================== INVITATIONS BUTTON ==================== */
+.invitations-btn {
+  position: relative;
+  background: none;
+  border: none;
+  color: var(--gray);
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.invitations-btn:hover {
+  background: rgba(79, 124, 100, 0.1);
+  color: var(--sage-main);
+}
+
+.notification-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: var(--danger);
+  color: white;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  border: 2px solid var(--white);
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+/* ==================== PROFILE SECTION ==================== */
+.profile-section {
+  position: relative;
+}
+
+.profile-trigger {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 6px 14px 6px 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.profile-trigger:hover {
+  border-color: var(--sage-main);
+  box-shadow: 0 4px 12px rgba(79, 124, 100, 0.1);
+}
+
+.nav-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--sage-light);
+  flex-shrink: 0;
+}
+
+.nav-username {
+  color: var(--sage-dark);
+  font-weight: 600;
+  font-size: 0.95rem;
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.chevron-icon {
+  color: var(--gray);
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.profile-trigger:hover .chevron-icon {
+  color: var(--sage-main);
+}
+
+.chevron-icon.rotate {
+  transform: rotate(180deg);
+}
+
+/* ==================== PROFILE DROPDOWN ==================== */
+.profile-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: var(--white);
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(79, 124, 100, 0.15);
+  min-width: 240px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  z-index: 1000;
+}
+
+.profile-dropdown button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 16px;
+  background: none;
+  border: none;
+  color: var(--sage-dark);
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  text-align: left;
+}
+
+.profile-dropdown button:hover {
+  background: var(--sage-light);
+  color: var(--sage-main);
+}
+
+.profile-dropdown button svg {
+  flex-shrink: 0;
+}
+
+.profile-dropdown .logout-btn {
+  color: var(--danger);
+}
+
+.profile-dropdown .logout-btn:hover {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--error-dark);
+}
+
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 0;
+}
+
+/* dark theme overrides for profile dropdown */
+html[data-theme='dark'] .profile-dropdown {
+  background: var(--white);
+  border-color: var(--border);
+}
+
+html[data-theme='dark'] .profile-dropdown button {
+  color: var(--sage-dark);
+}
+
+html[data-theme='dark'] .profile-dropdown button:hover {
+  background: #1e293b !important;
+  color: #3b82f6 !important;
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 768px) {
+  .top-navbar {
+    padding: 0 16px;
+    height: 64px;
+  }
+
+  .nav-brand {
+    font-size: 1.1rem;
+  }
+
+  .nav-right {
+    gap: 12px;
+  }
+
+  .profile-trigger {
+    padding: 6px 10px 6px 6px;
+  }
+
+  .nav-username {
+    display: none;
+  }
+
+  .nav-avatar {
+    width: 36px;
+    height: 36px;
+  }
+
+  .profile-dropdown {
+    min-width: 200px;
+  }
+
+  .profile-dropdown button {
+    padding: 12px 14px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .top-navbar {
+    padding: 0 12px;
+    height: 60px;
+  }
+
+  .nav-left {
+    gap: 12px;
+  }
+
+  .nav-brand-wrapper {
+    gap: 8px;
+  }
+
+  .brand-sparkle {
+    width: 18px;
+    height: 18px;
+  }
+
+  .nav-brand {
+    font-size: 1rem;
+  }
+
+  .nav-right {
+    gap: 8px;
+  }
+
+  .invitations-btn {
+    padding: 6px;
+  }
+
+  .notification-badge {
+    width: 20px;
+    height: 20px;
+    font-size: 0.65rem;
+    top: -4px;
+    right: -4px;
+  }
+
+  .profile-trigger {
+    padding: 4px 8px 4px 4px;
+  }
+
+  .nav-avatar {
+    width: 32px;
+    height: 32px;
+  }
+
+  .chevron-icon {
+    width: 14px;
+    height: 14px;
+  }
+
+  .profile-dropdown {
+    min-width: 180px;
+    top: calc(100% + 4px);
+  }
+
+  .profile-dropdown button {
+    padding: 10px 12px;
+    font-size: 0.85rem;
+  }
+}

@@ -1,0 +1,591 @@
+/* src/styles/Community.css */
+:root {
+  --sage-main: #4f7c64;
+  --sage-dark: #1a2e25;
+  --sage-light: #e8f0ed;
+  --gray: #64748b;
+  --gray-light: #f1f5f9;
+  --white: #ffffff;
+  --border: #e2e8f0;
+}
+
+.community-page {
+  padding: 40px 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+.community-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 48px;
+  animation: slideDown 0.5s ease-out;
+}
+
+.community-header h1 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: var(--sage-dark);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+}
+
+.header-icon {
+  color: var(--sage-main);
+}
+
+.community-header h1 span {
+  font-size: 1.1rem;
+  background: var(--sage-main);
+  color: white;
+  padding: 6px 18px;
+  border-radius: 30px;
+  font-weight: 700;
+  margin-left: 12px;
+}
+
+/* ==================== EMPTY STATE ==================== */
+.empty-community {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 40px;
+  text-align: center;
+  color: var(--gray);
+}
+
+.empty-community svg {
+  color: var(--sage-light);
+  margin-bottom: 24px;
+  opacity: 0.5;
+}
+
+.empty-community h2 {
+  font-size: 1.8rem;
+  color: var(--sage-dark);
+  margin-bottom: 12px;
+}
+
+.empty-community p {
+  font-size: 1.1rem;
+  color: var(--gray);
+}
+
+/* ==================== USERS GRID ==================== */
+.users-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 28px;
+  animation: fadeIn 0.6s ease-out;
+}
+
+.user-card {
+  background: var(--white);
+  border-radius: 24px;
+  padding: 32px 24px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+.user-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--sage-main), #7ba87f);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease-out;
+}
+
+.user-card:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 25px 50px rgba(79, 124, 100, 0.15);
+  border-color: var(--sage-main);
+}
+
+.user-card:hover::before {
+  transform: scaleX(1);
+}
+
+.avatar-container {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 24px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 6px solid var(--sage-light);
+  background: linear-gradient(135deg, var(--sage-light), #f0f7f4);
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.user-card h3 {
+  font-size: 1.4rem;
+  color: var(--sage-dark);
+  margin: 0 0 8px;
+  font-weight: 700;
+}
+
+.user-subtitle {
+  font-size: 0.9rem;
+  color: var(--gray);
+  margin-bottom: 24px;
+  font-weight: 500;
+}
+
+.user-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.btn-profile,
+.btn-message {
+  padding: 14px 18px;
+  border-radius: 14px;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-profile {
+  background: var(--gray-light);
+  color: var(--sage-dark);
+  border: 2px solid transparent;
+}
+
+.btn-profile:hover {
+  background: var(--border);
+  transform: translateX(-2px);
+}
+
+.btn-message {
+  background: var(--sage-main);
+  color: white;
+}
+
+.btn-message:hover {
+  background: var(--sage-main);
+  transform: translateX(2px);
+  box-shadow: 0 8px 20px rgba(79, 124, 100, 0.3);
+}
+
+/* bouton d'invitation d'ami */
+.btn-invite {
+  padding: 14px 18px;
+  border-radius: 14px;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--sage-light);
+  color: var(--sage-dark);
+}
+
+.btn-invite:hover {
+  background: var(--border);
+  transform: translateX(-2px);
+}
+
+/* style pour bouton en attente */
+.btn-invite.pending {
+  background: var(--gray-light);
+  color: var(--gray);
+  cursor: default;
+  transform: none;
+}
+
+/* style pour bouton amis (accepté) */
+.btn-invite.friend {
+  background: #d1fae5;
+  color: #047857;
+  cursor: default;
+  transform: none;
+}
+
+/* ==================== MODAL PROFIL ==================== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 20px;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.profile-modal {
+  background: var(--white);
+  width: 100%;
+  max-width: 720px;
+  border-radius: 28px;
+  padding: 40px;
+  position: relative;
+  max-height: 92vh;
+  overflow-y: auto;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+  animation: slideUp 0.4s ease-out;
+}
+
+.profile-modal::-webkit-scrollbar {
+  width: 8px;
+}
+
+.profile-modal::-webkit-scrollbar-track {
+  background: var(--gray-light);
+  border-radius: 10px;
+}
+
+.profile-modal::-webkit-scrollbar-thumb {
+  background: var(--sage-main);
+  border-radius: 10px;
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: var(--gray-light);
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: var(--gray);
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+  background: var(--border);
+  color: var(--sage-dark);
+  transform: rotate(90deg);
+}
+
+.big-avatar {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 8px solid var(--sage-light);
+  display: block;
+  margin: 0 auto 24px;
+  box-shadow: 0 10px 30px rgba(79, 124, 100, 0.2);
+}
+
+.profile-modal h2 {
+  text-align: center;
+  font-size: 1.8rem;
+  color: var(--sage-dark);
+  margin-bottom: 32px;
+  font-weight: 700;
+}
+
+.memes-title {
+  text-align: center;
+  margin: 32px 0 24px;
+  color: var(--sage-dark);
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.public-memes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.mini-meme-card {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  aspect-ratio: 1;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+}
+
+.mini-meme-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 30px rgba(79, 124, 100, 0.2);
+}
+
+.mini-meme-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Textes prévisualisés sur les mèmes */
+.mini-meme-card .preview-text {
+  position: absolute;
+  font-family: 'Impact', 'Arial Black', sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.1;
+  white-space: nowrap;
+  text-shadow: 
+    2px 2px 0 #000, -2px -2px 0 #000, 
+    2px -2px 0 #000, -2px 2px 0 #000,
+    1px 1px 0 #000;
+  font-weight: bold;
+  font-size: 0.8rem;
+  padding: 4px 8px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.mini-meme-card .preview-text.top {
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.mini-meme-card .preview-text.bottom {
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.meme-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(79, 124, 100, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.mini-meme-card:hover .meme-overlay {
+  opacity: 1;
+}
+
+.share-in-profile {
+  background: white;
+  color: var(--sage-main);
+  border: none;
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.share-in-profile:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.no-memes-message {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--gray);
+}
+
+.no-memes-message p {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 1024px) {
+  .users-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 24px;
+  }
+
+  .community-page {
+    padding: 32px 16px;
+  }
+
+  .community-header h1 {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .users-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+  }
+
+  .community-header {
+    margin-bottom: 32px;
+  }
+
+  .community-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .community-header h1 span {
+    font-size: 0.9rem;
+    padding: 4px 12px;
+  }
+
+  .user-card {
+    padding: 24px 16px;
+  }
+
+  .avatar-container {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 16px;
+  }
+
+  .user-card h3 {
+    font-size: 1.2rem;
+  }
+
+  .profile-modal {
+    padding: 24px;
+    border-radius: 20px;
+  }
+
+  .big-avatar {
+    width: 120px;
+    height: 120px;
+    border-width: 6px;
+  }
+
+  .public-memes-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .community-page {
+    padding: 20px 12px;
+  }
+
+  .community-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .users-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .user-card {
+    padding: 20px 16px;
+  }
+
+  .avatar-container {
+    width: 90px;
+    height: 90px;
+  }
+
+  .user-card h3 {
+    font-size: 1.1rem;
+  }
+
+  .btn-profile,
+  .btn-message {
+    padding: 12px 14px;
+    font-size: 0.9rem;
+  }
+
+  .profile-modal {
+    padding: 20px;
+    max-height: 95vh;
+  }
+
+  .big-avatar {
+    width: 100px;
+    height: 100px;
+  }
+
+  .memes-title {
+    font-size: 1.1rem;
+    margin: 24px 0 16px;
+  }
+
+  .public-memes-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 12px;
+  }
+}

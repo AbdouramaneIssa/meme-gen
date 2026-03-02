@@ -1,0 +1,148 @@
+:root {
+  --soft-green: #f0f7f4;
+  --mid-green: #d1e2d9;
+  --accent-green: #4f7c64;
+  --dark-green: #2d4a3e;
+  --white: #ffffff;
+  --text-gray: #6b7280;
+}
+
+.login-page {
+  min-height: 100vh;
+  background-color: var(--soft-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', system-ui, sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Décoration d'arrière-plan */
+.bg-decoration .circle {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: 0;
+}
+.circle-1 { width: 400px; height: 400px; background: #e2ece7; top: -100px; left: -100px; }
+.circle-2 { width: 300px; height: 300px; background: #dce7e1; bottom: -50px; right: -50px; }
+
+.login-container {
+  z-index: 1;
+  width: 100%;
+  max-width: 420px;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Header & Logo */
+.logo-wrapper {
+  background: var(--white);
+  width: 80px;
+  height: 80px;
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  color: var(--accent-green);
+  box-shadow: 0 10px 25px rgba(79, 124, 100, 0.1);
+}
+
+.brand-name {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--dark-green);
+  margin: 0;
+}
+.brand-name span { color: var(--accent-green); }
+.brand-tagline { color: var(--text-gray); margin-bottom: 40px; font-weight: 450; }
+
+/* La Carte */
+.login-card {
+  background: var(--white);
+  border-radius: 32px;
+  padding: 40px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(255,255,255,0.8);
+}
+
+.login-card h2 { color: var(--dark-green); font-size: 1.5rem; margin-bottom: 8px; }
+.login-card p { color: var(--text-gray); font-size: 0.95rem; margin-bottom: 32px; }
+
+/* Bouton Google Blanc */
+.google-btn-new {
+  width: 100%;
+  background: var(--white);
+  color: #374151;
+  border: 1px solid #e5e7eb;
+  padding: 14px;
+  border-radius: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.google-btn-new:hover {
+  background: #f9fafb;
+  border-color: #d1d5db;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.google-btn-new img { width: 20px; height: 20px; }
+
+/* Spinner */
+.spinner-icon {
+  animation: spin 1s linear infinite;
+  color: var(--accent-green);
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Features Minimalistes */
+.features-minimal {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 40px;
+  color: var(--accent-green);
+}
+
+.f-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  opacity: 0.7;
+}
+
+.error-box {
+  background: #fef2f2;
+  color: #b91c1c;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  margin-bottom: 20px;
+  border: 1px solid #fee2e2;
+}
+
+.legal {
+  margin-top: 24px !important;
+  font-size: 0.8rem !important;
+}
+.legal span {
+  color: var(--accent-green);
+  text-decoration: underline;
+  cursor: pointer;
+}

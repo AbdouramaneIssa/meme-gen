@@ -1,0 +1,351 @@
+/* src/styles/MemeEditor.css - COMPLET ET INTÉGRAL AVEC AMÉLIORATIONS */
+
+/* --- Variables & Reset --- */
+:root {
+  --studio-sage: #4f7c64;
+  --studio-sage-light: #e8f0ed;
+  --studio-dark: #1a2e25;
+  --studio-gray: #64748b;
+  --studio-bg: #f1f5f9;
+  --shadow-sm: 0 4px 12px rgba(0,0,0,0.03);
+  --shadow-lg: 0 20px 50px rgba(0,0,0,0.1);
+}
+
+.meme-editor-layout {
+  display: flex;
+  height: calc(100vh - 90px); /* Ajusté pour la Navbar */
+  gap: 20px;
+  position: relative;
+  transition: all 0.3s ease; /* Évite le flip brutal */
+}
+
+/* --- ZONE DE TRAVAIL (MAIN) --- */
+.meme-canvas-section {
+  flex: 1;
+  background: var(--white);
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  min-height: 400px; /* Force la hauteur pour éviter le flip */
+}
+
+.canvas-stage { text-align: center; max-width: 100%; }
+
+.canvas-capture-area {
+  position: relative;
+  /* use themeable white variable so dark mode inverts this card as well */
+  background: var(--white);
+  box-shadow: var(--shadow-lg);
+  border-radius: 12px;
+  overflow: hidden;
+  display: inline-block;
+  border: 4px solid var(--white);
+}
+
+.meme-base-img {
+  max-width: 100%;
+  max-height: 70vh; /* S'adapte à l'écran */
+  display: block;
+  object-fit: contain;
+}
+
+/* Style du texte mobile sur l'image */
+.draggable-text-overlay {
+  position: absolute;
+  padding: 8px;
+  cursor: move;
+  font-family: 'Impact', 'Arial Black', sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.1;
+  white-space: nowrap;
+  user-select: none;
+  /* Outline noir épais classique des mèmes */
+  text-shadow: 
+    2px 2px 0 #000, -2px -2px 0 #000, 
+    2px -2px 0 #000, -2px 2px 0 #000,
+    1px 1px 0 #000;
+  border-radius: 4px;
+}
+
+.draggable-text-overlay:hover {
+  outline: 2px dashed var(--studio-sage);
+  background: rgba(79, 124, 100, 0.15);
+}
+
+.drag-handle-icon {
+  position: absolute;
+  top: -18px;
+  right: -18px;
+  background: var(--studio-sage);
+  color: white;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.draggable-text-overlay:hover .drag-handle-icon {
+  opacity: 1;
+}
+
+.help-text { font-size: 0.8rem; color: var(--studio-gray); margin-top: 10px; }
+
+/* --- BARRE D'OUTILS (SIDEBAR) --- */
+.meme-sidebar-tools {
+  width: 320px;
+  background: var(--white);
+  border-radius: 24px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+  overflow-y: auto;
+  /* positioned in the flex layout instead of fixed */
+  position: relative;
+}
+
+.toolbar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.toolbar-header h3 { font-size: 1rem; font-weight: 800; color: var(--sage-dark); }
+.close-tools { background: none; border: none; color: var(--studio-gray); cursor: pointer; font-size: 1.2rem; }
+
+/* Upload Button */
+.upload-trigger {
+  width: 100%;
+  padding: 16px;
+  border-radius: 14px;
+  border: 2px dashed var(--border);
+  background: var(--sage-light);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-weight: 700;
+  color: var(--studio-sage);
+  transition: 0.2s;
+  margin-bottom: 20px;
+}
+.upload-trigger:hover { background: var(--studio-sage-light); border-color: var(--studio-sage); }
+
+/* Text Editor Section */
+.text-editor-section { flex: 1; display: flex; flex-direction: column; }
+.section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.add-text-btn {
+  background: var(--studio-sage);
+  color: white;
+  border: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.texts-list-scroll { flex: 1; overflow-y: auto; padding-right: 5px; }
+
+/* Cartes de texte dans la sidebar */
+.text-item-card {
+  background: var(--sage-light);
+  border-radius: 12px;
+  padding: 12px;
+  border: 2px solid transparent;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+/* active card should also respect theme variables rather than fixed studio values */
+.text-item-card.active { border-color: var(--sage-main); background: var(--sage-light); }
+
+.card-main { display: flex; gap: 8px; align-items: center; }
+ .card-main input {
+  flex: 1;
+  background: var(--white);
+  border: 1px solid var(--border);
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: border 0.2s;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05) inset;
+}
+.card-main input:focus {
+  outline: none;
+  border-color: var(--studio-sage);
+  box-shadow: 0 0 0 3px rgba(79, 124, 100, 0.15);
+}
+.delete-btn { background: none; border: none; color: var(--danger); cursor: pointer; padding: 5px; transition: transform 0.2s; }
+.delete-btn:hover { transform: scale(1.1); }
+
+.card-tools {
+  display: flex;
+  gap: 15px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(0,0,0,0.05);
+  align-items: center;
+}
+.tool-control { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; color: var(--studio-dark); font-weight: 500; }
+.tool-control input[type="color"] { border: none; width: 32px; height: 32px; cursor: pointer; background: none; border-radius: 50%; padding: 0; }
+.tool-control input[type="range"] { flex: 1; accent-color: var(--sage-main); appearance: none; height: 6px; border-radius: 3px; background: var(--border); transition: background 0.2s; }
+.tool-control input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  background: var(--studio-sage);
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.tool-control input[type="range"]:hover { background: var(--gray-light); }
+.flex-grow { flex: 1; }
+
+/* Amélioration Color Picker */
+.color-picker-wrapper {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+.color-picker-wrapper input[type="color"] {
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+}
+
+/* Actions finales */
+.publish-actions-group { margin-top: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding-top: 20px; }
+.btn-action-publish {
+  background: var(--studio-dark);
+  color: white;
+  padding: 14px;
+  border-radius: 12px;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background 0.2s;
+}
+.btn-action-publish:hover { background: #2d4a3e; }
+.btn-action-draft {
+  background: var(--white);
+  border: 1px solid var(--border);
+  color: var(--studio-dark);
+  padding: 14px;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: border 0.2s;
+}
+.btn-action-draft:hover { border-color: var(--studio-sage); }
+
+/* Empty State */
+.empty-studio-placeholder { text-align: center; cursor: pointer; color: var(--studio-gray); }
+.empty-studio-placeholder { background: var(--white); padding: 40px; border-radius: 12px; color: var(--gray); }
+.icon-wrap {
+  width: 120px; height: 120px; background: var(--white);
+  border-radius: 40px; display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 25px; box-shadow: var(--shadow-sm);
+}
+.empty-studio-placeholder h2 { font-weight: 800; color: var(--studio-dark); margin-bottom: 10px; }
+.empty-studio-placeholder h2 span { color: var(--studio-sage); }
+
+/* Success Message */
+.success-message {
+  margin: 15px 0;
+  padding: 12px;
+  background: var(--sage-light);
+  color: var(--sage-main);
+  border-radius: 12px;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* --- RESPONSIVE : MOBILE VIEWS (< 768px) --- */
+@media (max-width: 768px) {
+  .meme-editor-layout {
+    flex-direction: column; /* Empile les éléments verticalement */
+    height: calc(100vh - 70px);
+    gap: 0;
+  }
+
+  /* Zone Canevas en haut, prend la place nécessaire */
+  .meme-canvas-section {
+    flex: none;
+    height: 50%; /* Réserve 50% de la hauteur pour le mème */
+    width: 100%;
+    padding: 10px;
+    border-radius: 0;
+    min-height: auto;
+  }
+
+  .meme-base-img {
+    max-height: 50vh; /* Plus petit pour laisser de la place aux outils */
+  }
+
+  .draggable-text-overlay {
+    padding: 4px; /* Plus compact */
+  }
+
+  /* on mobile we simply stack the tools card below the canvas */
+    .meme-sidebar-tools {
+      position: relative;
+      width: 100%;
+      height: auto;
+      border-radius: 0;
+      box-shadow: none;
+      padding: 20px;
+      margin-top: 20px; /* espace entre canevas et outils en mobile */
+    }
+
+  /* Ajustements internes pour le mobile */
+  .texts-list-scroll { max-height: 25vh; }
+  .publish-actions-group { padding-bottom: 20px; }
+
+  /* mobile toggle button removed */
+}
+
+/* Sur PC, le bouton flottant est aussi visible pour toggle la sidebar */
+@media (min-width: 769px) {
+  .mobile-tools-trigger {
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    background: var(--studio-sage);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 30px;
+    font-weight: 700;
+    z-index: 1500;
+    box-shadow: 0 5px 20px rgba(79, 124, 100, 0.4);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    writing-mode: vertical-rl; /* Texte vertical pour slim */
+    transform: rotate(180deg); /* Pour lecture correcte */
+  }
+}
+/* removed leftover floating toggle styles */
