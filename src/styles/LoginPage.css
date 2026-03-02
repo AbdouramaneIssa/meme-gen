@@ -146,3 +146,54 @@
   text-decoration: underline;
   cursor: pointer;
 }
+
+/* Dark Theme Overrides */
+html[data-theme='dark'] .login-page {
+  background-color: #0f172a;
+}
+
+html[data-theme='dark'] .circle-1,
+html[data-theme='dark'] .circle-2 {
+  background: #1e293b !important;
+}
+
+html[data-theme='dark'] .logo-wrapper {
+  background: #1e293b;
+  color: #3b82f6;
+}
+
+html[data-theme='dark'] .login-card {
+  background: #0f172a;
+  border-color: #334155;
+}
+
+html[data-theme='dark'] .login-card h2 {
+  color: #f8fafc;
+}
+
+html[data-theme='dark'] .login-card p {
+  color: #94a3b8;
+}
+
+html[data-theme='dark'] .google-btn-new {
+  background: #1e293b;
+  color: #f8fafc;
+  border-color: #334155;
+}
+
+html[data-theme='dark'] .google-btn-new:hover {
+  background: #334155;
+  border-color: #475569;
+}
+
+html[data-theme='dark'] .brand-name {
+  color: #f8fafc;
+}
+
+html[data-theme='dark'] .brand-name span {
+  color: #3b82f6;
+}
+
+html[data-theme='dark'] .brand-tagline {
+  color: #94a3b8;
+}

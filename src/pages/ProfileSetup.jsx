@@ -108,7 +108,7 @@ function ProfileSetup({ user, onProfileComplete }) {
                   type="text"
                   value={displayName}
                   onChange={(e) => setDisplayName(e.target.value)}
-                  placeholder="Ex: Jean Meme"
+                  placeholder="Ex: Salmana Bin Mohammed"
                   maxLength="50"
                   className="premium-input"
                 />

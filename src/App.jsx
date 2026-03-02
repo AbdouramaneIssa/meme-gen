@@ -24,10 +24,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [showProfileSetup, setShowProfileSetup] = useState(false);
   const [theme, setTheme] = useState(() => {
-    // Préférence utilisateur ou système
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      return 'dark';
-    }
+    // Default to light theme
     return 'light';
   });
 
